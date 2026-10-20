@@ -9,13 +9,14 @@ ProductName: Locator
 
 constructor(page:Page){
 this.page = page;
-this.LOB = this.page.getByRole('link', { name: 'Employee Benefits 2 Products' })
-this.ProductName = this.page.getByRole('heading',{name:" Group Personal Accident "})
+this.LOB = this.page.locator('[class="style-card-title"]').nth(4)
+this.ProductName = this.page.locator('[class="product-body d-flex align-items-center"]').nth(0)
 
 }
 
 async SelectProduct(){
 
+    
     await this.LOB.click()
     await this.ProductName.click()
 }
