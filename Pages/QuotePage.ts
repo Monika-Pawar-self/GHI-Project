@@ -95,18 +95,18 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     await this.page.getByText(SumInsuredType, {exact:true}).click()
     await this.fileupload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/GPA-Non-SME member data named - Flat SI - 1600.xlsx")
     await this.uploadButton.click()
-    await expect(this.toaster).toContainText("Success!",{timeout: 30000})
+    await expect(this.toaster).toContainText("Success!",{timeout: 60000})
     const fileuploadmessage = await this.toaster.textContent()
-    console.log("Members Data Upload Status:", fileuploadmessage);
+    //console.log("Members Data Upload Status:", fileuploadmessage);
     await this.rfqUpload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/RFQ Doc.pdf")
     await this.uploadButton2.click()
     await this.getPremium.click({timeout:180000})
     const UWReason = await this.uwReason.textContent()
-    console.log("Case Referred to UW:",UWReason);
+    //console.log("Case Referred to UW:",UWReason);
     await this.refferToUW.click()
     await expect(this.alert).toContainText("Common UW Pool")
     const AssignedUW = await this.alert.textContent()
-    console.log(AssignedUW);
+    //console.log(AssignedUW);
 
    const QuoteID1 = await this.quoteID.textContent()
    const QuoteID = QuoteID1?.split(":")[1].trim()

@@ -3,51 +3,37 @@ import { LoginPage } from '../Pages/LoginPage'
 import { ExcelUtils } from '../Utils/ExcelUtils'
 import { SelectProduct } from '../Pages/SelectProduct'
 import { QuotePage } from '../Pages/QuotePage'
+import { UWLogin } from '../Pages/UWLogin'
 
 const URL = "https://rsinsureuat.royalsundaram.net/login/#/login"
 
-
 test.setTimeout(180000)
 
-let data: any
-try {
-data = ExcelUtils.getExcelData("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx", "GHI")
-}
-catch(e)
-{
+let data: any;
+
+try { 
+    data = ExcelUtils.getExcelData("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI")
+    }
+
+catch(e){
     console.log(e);
-    
 }
 
 let lp: LoginPage
 let sp: SelectProduct
 let qp: QuotePage
-
-test.afterEach("Status", async({}, testInfo )=>{
-for(let i=0;i<data.length; i++) {
- if (testInfo.title === data[i].TestResult) {
-if (testInfo.status === "passed") {
-
-    ExcelUtils.writeTestResult("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx", "GHI", i+2, "Pass")
-}
-
-else
-{
-    ExcelUtils.writeTestResult("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx", "GHI", i+2, "Fail")
-}
-}
-}
-
-})
-
-
-
-
+let uwl: UWLogin
 
 test ("GPA Flow", async ({page}) =>{
 
-for(let i=0;i<data.length; i++){
-    
+ let TotalCases = data.length;
+ let PassedCases = 0;
+ let FailedCases = 0; 
+
+ for(let i=0;i < data.length; i++){
+ const rowNumber = i+2
+
+try {                               //In your Playwright code, we put try inside the for loop and around the method calls because you want to handle failures separately for each Excel row.
 lp = new LoginPage(page)
 await lp.LoginIntoApplication(URL,data[i].Username, data[i].Password)
 
@@ -59,23 +45,54 @@ await sp.SelectProduct()
 
 
 qp = new QuotePage(page)
-
 const QuoteID = await qp.EnterPolicyDetails(data[i].BusinessType, data[i].AgentCode, data[i].BranchName, data[i].Channel, data[i].InsuredName,
-    data[i].GroupType, data[i].Industry, data[i].OccupationMaster, data[i].ProposalBasis, data[i].EmployeeType, data[i].PolicyStartDate,
+    data[i].GroupType, data[i].Industry,data[i].OccupationMaster, data[i].ProposalBasis, data[i].EmployeeType, data[i].PolicyStartDate,
     data[i].SumInsuredType
 )
 
 if(QuoteID)
-    {ExcelUtils.writeQuoteID("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx",
-        "GHI",
-        i+2,
-        QuoteID )
-}
+    {
+    ExcelUtils.writeQuoteID("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI", i+2, QuoteID )
+     }
+
+
+
+    uwl = new UWLogin(page)
+    await page.goto(URL)
+    await uwl.LoginToUW(QuoteID)
 
  
 
+    ExcelUtils.writeTestResult("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI", rowNumber , "Pass")
+     PassedCases ++;
+     console.log(`Excel row ${rowNumber} passed Successfully`);
+    }
 
-  }
+    catch(error){
+
+        const ErrorMessage = error instanceof Error  //This checks whether error is an instance of JavaScript's built-in Error class.
+        ? error.message
+        : String(error);
+
+        ExcelUtils.writeTestResult("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI", rowNumber , "Fail")
+      
+        ExcelUtils.writeErrorMessage("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI", rowNumber , ErrorMessage)
+        FailedCases ++ ;
+        console.log(`Excel row ${rowNumber} failed:`, ErrorMessage);
+   }
+}
+
+  console.log("\n========== TEST EXECUTION SUMMARY ==========");
+  console.log(`Total Test Cases : ${TotalCases}`);
+  console.log(`Passed Test Cases: ${PassedCases}`);
+  console.log(`Failed Test Cases: ${FailedCases}`);
+  console.log("****************************************");
+// Fail the overall Playwright test if any Excel row failed
+  expect(
+      FailedCases,
+      `${FailedCases} Excel test case(s) failed`
+  ).toBe(0);
+
 })
 
 
