@@ -49,15 +49,14 @@ this.Reason = this.page.locator("#reason")
 this.Submit1 = this.page.getByRole("button", {name:" Submit "}).nth(1)
 
 
-
 this.ReassignType = this.page.locator("#reassign_to_type")
 this.ReassignTo = this.page.locator("#reassign_to")
-this.Submit2 = this.page.getByRole("button", {name:"Submit"})
+this.Submit2 = this.page.locator('[class="btn btn-outline btn-md w-100 ng-star-inserted"]')
 
 this.TakeOver1 = this.page.getByRole("button", {name:" Take Over "})
 this.ProcessType1 = this.page.locator("#process_type")
 this.Reason1 = this.page.locator("#reason")
-this.Submit3 = this.page.getByRole("button", {name:" Submit "})
+this.Submit3 = this.page.getByRole("button", {name:" Submit "}).nth(1)
 
 
 }
@@ -81,7 +80,7 @@ await this.DataLink.click()
 await this.TakeOver.click()
 await this.ProcessType.click()
 await this.page.getByText("Review", {exact:true}).click()
-await this.Reason.fill("Reveiwed")
+await this.Reason.fill("ok")
 await this.Submit1.click()
 
 

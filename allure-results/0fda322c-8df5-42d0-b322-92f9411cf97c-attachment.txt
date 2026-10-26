@@ -1,0 +1,13 @@
+Excel row 2 failed: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Finalize Quote' })
+
+Excel row 3 failed: page.goto: Target page, context or browser has been closed
+Excel row 4 failed: page.goto: Target page, context or browser has been closed
+Excel row 5 failed: page.goto: Target page, context or browser has been closed
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 4
+Passed Test Cases: 0
+Failed Test Cases: 4
+****************************************

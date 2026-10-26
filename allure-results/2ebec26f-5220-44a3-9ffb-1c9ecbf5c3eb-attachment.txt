@@ -1,0 +1,12 @@
+Excel row 2 failed: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('#policy_transaction_type')
+    - waiting for "https://rsinsureuat.royalsundaram.net/gpa/" navigation to finish...
+    - navigated to "https://rsinsureuat.royalsundaram.net/gpa/#/"
+
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 1
+Passed Test Cases: 0
+Failed Test Cases: 1
+****************************************

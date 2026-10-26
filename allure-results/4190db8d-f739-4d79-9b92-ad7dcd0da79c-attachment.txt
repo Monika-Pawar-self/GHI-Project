@@ -1,0 +1,52 @@
+locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Finalize Quote' })
+
+    at QuotePage.FinalizeQuote (D:\Playrwright Automation\Playwright Projects\GHI\Pages\QuotePage.ts:144:34)
+    at D:\Playrwright Automation\Playwright Projects\GHI\tests\GPAFlow.spec.ts:70:15 {
+  log: [ "  - waiting for getByRole('button', { name: 'Finalize Quote' })" ],
+  Symbol(step): {
+    stack: [ [Object], [Object] ],
+    category: 'pw:api',
+    title: 'Click',
+    subtitle: "getByRole('button', { name: 'Finalize Quote' })",
+    params: { locator: "getByRole('button', { name: 'Finalize Quote' })" },
+    group: undefined,
+    stepId: 'ugrz@80',
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'ugrz@80',
+      _title: 'Click',
+      _parentStep: undefined,
+      skip: [Function (anonymous)]
+    },
+    complete: [Function: complete],
+    endWallTime: 1793026034157,
+    error: {
+      message: 'Error: locator.click: Test timeout of 180000ms exceeded.\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByRole('button', { name: 'Finalize Quote' })\x1B[22m\n",
+      stack: 'Error: locator.click: Test timeout of 180000ms exceeded.\n' +
+        'Call log:\n' +
+        "\x1B[2m  - waiting for getByRole('button', { name: 'Finalize Quote' })\x1B[22m\n" +
+        '\n' +
+        '    at QuotePage.FinalizeQuote (D:\\Playrwright Automation\\Playwright Projects\\GHI\\Pages\\QuotePage.ts:144:34)\n' +
+        '    at D:\\Playrwright Automation\\Playwright Projects\\GHI\\tests\\GPAFlow.spec.ts:70:15',
+      cause: undefined
+    }
+  }
+}
+Excel row 2 failed: locator.textContent: Target page, context or browser has been closed
+Excel row 3 failed: page.goto: Target page, context or browser has been closed
+Excel row 4 failed: page.goto: Target page, context or browser has been closed
+Excel row 5 failed: page.goto: Target page, context or browser has been closed
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 4
+Passed Test Cases: 0
+Failed Test Cases: 4
+****************************************

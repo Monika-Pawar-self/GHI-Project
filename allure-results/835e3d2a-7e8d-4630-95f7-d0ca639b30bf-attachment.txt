@@ -1,0 +1,16 @@
+Excel row 2 failed: locator.click: Error: strict mode violation: locator('[class="field-container readonly-wrapper ng-star-inserted"]') resolved to 5 elements:
+    1) <div class="field-container readonly-wrapper ng-star-inserted">…</div> aka locator('.field-container.readonly-wrapper').first()
+    2) <div class="field-container readonly-wrapper ng-star-inserted">…</div> aka locator('div:nth-child(21) > app-form-field > .ng-invalid.ng-star-inserted > .field-wrapper > .field-container')
+    3) <div class="field-container readonly-wrapper ng-star-inserted">…</div> aka locator('.accordion-content.expanded.overflow-visible > .accordion-content-inner > div > .form-section > .row > div > app-form-field > .ng-invalid.ng-star-inserted > .field-wrapper > .field-container').first()
+    4) <div class="field-container readonly-wrapper ng-star-inserted">…</div> aka locator('div:nth-child(4) > app-form-field > .ng-untouched.ng-pristine.ng-invalid.ng-star-inserted > .field-wrapper > .field-container')
+    5) <div class="field-container readonly-wrapper ng-star-inserted">…</div> aka locator('div:nth-child(5) > app-form-field > .ng-untouched.ng-pristine.ng-invalid.ng-star-inserted > .field-wrapper > .field-container')
+
+Call log:
+  - waiting for locator('[class="field-container readonly-wrapper ng-star-inserted"]')
+
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 1
+Passed Test Cases: 0
+Failed Test Cases: 1
+****************************************

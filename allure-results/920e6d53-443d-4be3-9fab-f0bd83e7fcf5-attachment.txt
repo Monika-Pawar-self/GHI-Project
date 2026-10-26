@@ -1,0 +1,17 @@
+Excel row 2 failed: expect(locator).toContainText(expected) failed
+
+Locator: locator('.ngx-toastr.toast-success')
+Expected substring: "Success!"
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toContainText" locator('.ngx-toastr.toast-success') with timeout 60000ms
+  - waiting for locator('.ngx-toastr.toast-success')
+
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 1
+Passed Test Cases: 0
+Failed Test Cases: 1
+****************************************

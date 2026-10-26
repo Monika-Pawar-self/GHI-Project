@@ -26,7 +26,9 @@ uwReason: Locator
 refferToUW: Locator
 alert: Locator
 quoteID: Locator
-
+proceedButton:Locator
+finalizeQuote: Locator
+proccedToProposal: Locator
 
 constructor(page:Page) {
 this.page = page;
@@ -34,6 +36,7 @@ this.page = page;
 this.QuoteButton = this.page.locator('[class="btn btn-primary btn-md"]')
 this.businessType = page.locator('#policy_transaction_type')
 this.agentCode = this.page.getByPlaceholder('Enter Agent Code')
+
 this.branchName = this.page.locator('#pol_serv_branch_name')
 this.channel =this.page.locator('#imd_channel')
 this.insuredName = this.page.locator('#proposer_name_primary_insured')
@@ -50,11 +53,17 @@ this.toaster = this.page.locator('.ngx-toastr.toast-success')
 this.rfqUpload= this.page.locator('#fileInput').nth(1)
 this.uploadButton2 =this.page.locator('[class="btn btn-outline btn-md w-100 ng-star-inserted"]')
 this.getPremium = this.page.getByRole("button",{name:'Get Premium'})
+
+this.proceedButton = this.page.locator('[class="btn btn-primary btn-md px-5 d-flex align-items-center gap-2 ng-star-inserted"]').nth(1)
+this.finalizeQuote = this.page.getByRole("button",{name:"Finalize Quote"})
+
 this.uwReason = this.page.locator('[class="review-section-wrapper"]')
 this.refferToUW = this.page.getByRole("button",{name:'Refer For UW'})
 this.alert = this.page.locator('[role="alert"]')
+
 this.quoteID = this.page.getByText("Quotation ID")
 
+this.proccedToProposal = this.page.getByRole("button",{name:" Proceed to Proposal "})
 
 }
 
@@ -74,8 +83,13 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     await this.businessType.click();
     await this.page.getByText(BusinessType,{exact: true}).click()
     await this.agentCode.fill(AgentCode)
+
     await this.branchName.click()
     await this.page.getByText(BranchName,{exact:true}).click()
+
+    await this.page.mouse.click(1200, 500);
+    await this.page.waitForTimeout(2000);
+
     await this.channel.click()
     await this.page.getByText(Channel, {exact:true}).click()
     await this.insuredName.fill(InsuredName)
@@ -93,7 +107,7 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     await this.policyStartDate.fill(PolicyStartDate)
     await this.sumInsuredType.click()
     await this.page.getByText(SumInsuredType, {exact:true}).click()
-    await this.fileupload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/GPA-Non-SME member data named - Flat SI - 1600.xlsx")
+    await this.fileupload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/Member Data.xlsx")
     await this.uploadButton.click()
     await expect(this.toaster).toContainText("Success!",{timeout: 60000})
     const fileuploadmessage = await this.toaster.textContent()
@@ -101,6 +115,16 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     await this.rfqUpload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/RFQ Doc.pdf")
     await this.uploadButton2.click()
     await this.getPremium.click({timeout:180000})
+    
+
+   
+   
+            }
+
+
+
+    async ReferToUW(){
+
     const UWReason = await this.uwReason.textContent()
     //console.log("Case Referred to UW:",UWReason);
     await this.refferToUW.click()
@@ -108,18 +132,32 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     const AssignedUW = await this.alert.textContent()
     //console.log(AssignedUW);
 
-   const QuoteID1 = await this.quoteID.textContent()
-   const QuoteID = QuoteID1?.split(":")[1].trim()
-   console.log(QuoteID);
-   return QuoteID;
-   
+
+    }      
+
+     async ClickProceed(){
+        await this.proceedButton.click()
+     }
 
     
+     async FinalizeQuote(){
+        await this.finalizeQuote.click()
+     }
+    
+     async ProceedToProposal(){
+
+      await this.proccedToProposal.click()
+      }
  
 
-   
-    
-}
+    async GetQuoteID(){
+    const QuoteID1 = await this.quoteID.textContent()
+    const QuoteID = QuoteID1?.split(":")[1].trim()
+    console.log(QuoteID);
+    return QuoteID;
+
+    }
+
 
 
 
