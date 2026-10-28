@@ -1,5 +1,5 @@
 
-import { Page , Locator } from '@playwright/test'
+import { Page , Locator, expect } from '@playwright/test'
 
 export class UWLogin {
 
@@ -27,6 +27,8 @@ ProcessType1: Locator
 Reason1: Locator
 Submit3: Locator
 
+Initiator: Locator
+
 
 constructor(page:Page){
 
@@ -48,15 +50,17 @@ this.ProcessType = this.page.locator("#process_type")
 this.Reason = this.page.locator("#reason")
 this.Submit1 = this.page.getByRole("button", {name:" Submit "}).nth(1)
 
-
 this.ReassignType = this.page.locator("#reassign_to_type")
 this.ReassignTo = this.page.locator("#reassign_to")
-this.Submit2 = this.page.locator('[class="btn btn-outline btn-md w-100 ng-star-inserted"]')
+this.Submit2 = this.page.getByRole("button", {name:" Submit "})
 
 this.TakeOver1 = this.page.getByRole("button", {name:" Take Over "})
 this.ProcessType1 = this.page.locator("#process_type")
 this.Reason1 = this.page.locator("#reason")
 this.Submit3 = this.page.getByRole("button", {name:" Submit "}).nth(1)
+
+this.Initiator = this.page.locator('class="review-field-value text-primary"')
+
 
 
 }
@@ -81,27 +85,24 @@ await this.TakeOver.click()
 await this.ProcessType.click()
 await this.page.getByText("Review", {exact:true}).click()
 await this.Reason.fill("ok")
-await this.Submit1.click()
-
+await this.Submit1.click({timeout:9000})
 
 await this.ReassignType.click()
 await this.page.getByText("Email", {exact:true}).click()
 await this.ReassignTo.fill("uwlv6nonsme_eb@insillion.com")
 await this.Submit2.click()
 
-await this.page.reload()
+await this.page.reload({timeout:60000})
 
 await this.TakeOver1.click()
 await this.ProcessType1.click()
 await this.page.getByText("Approve", {exact:true}).click()
 await this.Reason1.fill("Approved")
 await this.Submit3.click()
+//await this.page.waitForTimeout(30000)
 
-
+await expect(this.Initiator).toContainText("salesuser2")
 
 }
-
-
-
 
 }

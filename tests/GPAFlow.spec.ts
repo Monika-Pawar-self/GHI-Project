@@ -5,6 +5,7 @@ import { SelectProduct } from '../Pages/SelectProduct'
 import { QuotePage } from '../Pages/QuotePage'
 import { UWLogin } from '../Pages/UWLogin'
 import { CommonSearch } from '../Pages/CommonSearch'
+import { ProposalPage } from '../Pages/ProposalPage'
 
 
 const URL = "https://rsinsureuat.royalsundaram.net/login/#/login"
@@ -26,11 +27,12 @@ let sp: SelectProduct
 let qp: QuotePage
 let uwl: UWLogin
 let cs: CommonSearch
+let pp:ProposalPage
 
 
 
 
-test.beforeEach ("Quote Flow", async ({page}) =>{
+test ("STP Flow", async ({page}) =>{
 
  let TotalCases = data.length;
  let PassedCases = 0;
@@ -141,6 +143,17 @@ await qp.EnterPolicyDetails(data[i].BusinessType, data[i].AgentCode, data[i].Bra
       ExcelUtils.writeQuoteID("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/TestData.xlsx","GHI", i+2, QuoteID )
     }
       
+
+     pp = new ProposalPage(page)
+     await pp.ProposalEntry(data[i].CKYCDoneBy, data[i].CustomerType, data[i].PanNumber, data[i].DateOfBirth, data[i].ProposerLastName,
+    data[i].ExistingClient, data[i].CustomerContactNumber, data[i].AddressLine1,data[i].AddressLine2, data[i].AddressLine3,
+    data[i].AddressLine4, data[i].Pincode, data[i].HREmail, data[i].SubChannel, data[i].SalesRepCode, data[i].TUWCode, data[i].UWCode)
+
+
+
+
+
+
 
     // this is try and catch
 
