@@ -1,0 +1,44 @@
+Q200000017818
+Excel row 2 failed: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[aria-autocomplete="list"]').first()
+    - locator resolved to <input type="text" role="combobox" autocorrect="off" autocomplete="off" autocapitalize="off" aria-expanded="false" aria-autocomplete="list"/>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div _ngcontent-ng-c2230211809="" class="ngx-spinner-overlay ng-tns-c2230211809-0 ng-trigger ng-trigger-fadeIn ng-star-inserted ng-animating">…</div> from <ngx-spinner color="#fff" size="medium" _nghost-ng-c2230211809="" type="ball-scale-multiple" _ngcontent-ng-c2888539297="" bdcolor="rgba(0, 0, 0, 0.8)" class="ng-tns-c2230211809-0">…</ngx-spinner> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div _ngcontent-ng-c2230211809="" class="ngx-spinner-overlay ng-tns-c2230211809-0 ng-trigger ng-trigger-fadeIn ng-star-inserted ng-animating">…</div> from <ngx-spinner color="#fff" size="medium" _nghost-ng-c2230211809="" type="ball-scale-multiple" _ngcontent-ng-c2888539297="" bdcolor="rgba(0, 0, 0, 0.8)" class="ng-tns-c2230211809-0">…</ngx-spinner> subtree intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div _ngcontent-ng-c2230211809="" class="ngx-spinner-overlay ng-tns-c2230211809-0 ng-trigger ng-trigger-fadeIn ng-star-inserted">…</div> from <ngx-spinner color="#fff" size="medium" _nghost-ng-c2230211809="" type="ball-scale-multiple" _ngcontent-ng-c2888539297="" bdcolor="rgba(0, 0, 0, 0.8)" class="ng-tns-c2230211809-0">…</ngx-spinner> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div _ngcontent-ng-c2230211809="" class="ngx-spinner-overlay ng-tns-c2230211809-0 ng-trigger ng-trigger-fadeIn ng-star-inserted">…</div> from <ngx-spinner color="#fff" size="medium" _nghost-ng-c2230211809="" type="ball-scale-multiple" _ngcontent-ng-c2888539297="" bdcolor="rgba(0, 0, 0, 0.8)" class="ng-tns-c2230211809-0">…</ngx-spinner> subtree intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 1
+Passed Test Cases: 0
+Failed Test Cases: 1
+****************************************

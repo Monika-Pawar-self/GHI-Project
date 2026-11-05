@@ -1,0 +1,10 @@
+Excel row 2 failed: locator.textContent: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[class="review-section-wrapper"]')
+
+
+========== TEST EXECUTION SUMMARY ==========
+Total Test Cases : 1
+Passed Test Cases: 0
+Failed Test Cases: 1
+****************************************
