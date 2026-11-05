@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page , expect } from '@playwright/test'
 
 export class ProposalPage{
 
@@ -31,12 +31,7 @@ GetPremium:Locator
 Proceed: Locator
 FinalizeProposal:Locator
 ProceedToPayment:Locator
-
-
-
-
-
-
+Toaster:Locator
 
 constructor(page:Page){
 this.page = page;
@@ -48,11 +43,11 @@ this.dob = this.page.locator("#proposer_dob")
 this.proposerLastName = this.page.locator("#proposer_last_name")
 this.existingClient = this.page.locator('[aria-autocomplete="list"]').nth(2)
 this.mobNo = this.page.locator("#mobile_no")
-this.AD1 = this.page.getByPlaceholder("Address line 1").nth(0)
-this.AD2 = this.page.getByPlaceholder("Address line 1").nth(1)
-this.AD3 = this.page.getByPlaceholder("Address line 1").nth(2)
-this.AD4 = this.page.getByPlaceholder("Address line 1").nth(3)
-this.pincode = this.page.locator("#permanent_pincode").nth(0)
+this.AD1 = this.page.locator("#permanent_address_line_1")
+this.AD2 = this.page.locator("#permanent_address_line_2")
+this.AD3 = this.page.locator("#permanent_address_line_3")
+this.AD4 = this.page.locator("#permanent_address_line_4")
+this.pincode = this.page.locator("#permanent_pincode")
 this.sameAD = this.page.locator('[for="same_address_toggle"]')
 this.hrEmail = this.page.locator("#hr_email")
 this.subChannel = this.page.locator('[aria-autocomplete="list"]').nth(8)
@@ -62,6 +57,7 @@ this.uwCode = this.page.locator("#imd_approving_uw")
 
 this.fileUpload = this.page.locator('[accept=".xlsx, .xls, .csv"]')
 this.UploadButton = this.page.locator('[class="btn btn-outline btn-md w-100 mt-7 ng-star-inserted"]')
+this.Toaster = this.page.locator('.ngx-toastr.toast-success')
 
 
 this.uploadCKYC =this.page.locator('[aria-autocomplete="list"]').nth(9)
@@ -94,7 +90,7 @@ async ProposalEntry(CKYCDoneBy:string, CustomerType:string, PanNumber:string, Da
    await this.ckycDoneBy.click()
    await this.page.getByText(CKYCDoneBy, {exact:true}).click()
    await this.customerType.click()
-   await this.page.getByText(CustomerType,{exact:true}).nth(1).click()
+   await this.page.getByText(CustomerType,{exact:true}).click()
    await this.panNumber.fill(PanNumber)
    await this.dob.fill(DateOfBirth)
    await this.proposerLastName.fill(ProposerLastName)
@@ -106,6 +102,7 @@ async ProposalEntry(CKYCDoneBy:string, CustomerType:string, PanNumber:string, Da
    await this.AD3.fill(AddressLine3)
    await this.AD4.fill(AddressLine4)
    await this.pincode.fill(Pincode)
+   //await this.page.waitForTimeout(9000)
    await this.sameAD.check()
    await this.hrEmail.fill(HREmail)
    await this.subChannel.click()
@@ -118,6 +115,9 @@ async ProposalEntry(CKYCDoneBy:string, CustomerType:string, PanNumber:string, Da
 
    await this.fileUpload.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/Member Data.xlsx")
    await this.UploadButton.click()
+   await this.page.waitForTimeout(6000)
+   
+  
 
    await this.uploadCKYC.click()
    await this.page.getByText("CKYC Certificate", {exact:true}).click()
@@ -125,10 +125,14 @@ async ProposalEntry(CKYCDoneBy:string, CustomerType:string, PanNumber:string, Da
 
    await this.uploadDoc.setInputFiles("D:/Playrwright Automation/Playwright Projects/GHI/Testdata/RFQ Doc.pdf")
    await this.remark.fill("OK")
-   await this.upoadButton2.click({timeout:3000})
+   await this.upoadButton2.click()
+   await this.page.waitForTimeout(4000)
+   
 
    await this.GetPremium.click()
+   await this.page.waitForTimeout(4000);
    await this.Proceed.click()
+   await this.page.waitForTimeout(4000);
    await this.FinalizeProposal.click()
    await this.ProceedToPayment.click()
 

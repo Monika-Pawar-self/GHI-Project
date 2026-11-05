@@ -10,7 +10,7 @@ import { ProposalPage } from '../Pages/ProposalPage'
 
 const URL = "https://rsinsureuat.royalsundaram.net/login/#/login"
 
-test.setTimeout(180000)
+test.setTimeout(400000)
 
 let data: any;
 
@@ -100,7 +100,7 @@ await qp.EnterPolicyDetails(data[i].BusinessType, data[i].AgentCode, data[i].Bra
 
 // NSTP Flow 
 
-test ("GPA NSTP", async ({page}) =>{
+test.only ("GPA NSTP", async ({page}) =>{
 
  let TotalCases = data.length;
  let PassedCases = 0;

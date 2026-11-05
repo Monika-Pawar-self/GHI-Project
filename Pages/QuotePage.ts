@@ -83,6 +83,7 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     await this.businessType.click();
     await this.page.getByText(BusinessType,{exact: true}).click()
     await this.agentCode.fill(AgentCode)
+    await this.page.waitForTimeout(6000)
 
     await this.branchName.click()
     await this.page.getByText(BranchName,{exact:true}).click()
