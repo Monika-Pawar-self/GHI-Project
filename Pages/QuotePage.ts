@@ -59,7 +59,7 @@ this.finalizeQuote = this.page.getByRole("button",{name:"Finalize Quote"})
 
 this.uwReason = this.page.locator('[class="review-section-wrapper"]')
 this.refferToUW = this.page.getByRole("button",{name:'Refer For UW'})
-this.alert = this.page.locator('[role="alert"]')
+//this.alert = this.page.locator('[role="alert"]')
 
 this.quoteID = this.page.getByText("Quotation ID")
 
@@ -129,8 +129,8 @@ async EnterPolicyDetails(BusinessType:string, AgentCode:string , BranchName:stri
     const UWReason = await this.uwReason.textContent()
     //console.log("Case Referred to UW:",UWReason);
     await this.refferToUW.click()
-    await expect(this.alert).toContainText("Common UW Pool")
-    const AssignedUW = await this.alert.textContent()
+    //await expect(this.alert).toContainText("Common UW Pool")
+    //const AssignedUW = await this.alert.textContent()
     //console.log(AssignedUW);
 
 

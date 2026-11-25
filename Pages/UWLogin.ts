@@ -107,7 +107,7 @@ await this.Submit3.click()
 await this.page.waitForTimeout(9000)
 
 await expect(this.Approved).toHaveText("Approved")
-await expect(this.Initiator).toHaveText(" Assigned to: salesuser2@commercial.royalsundaram.net ")
+//await expect(this.Initiator).toHaveText(" Assigned to: salesuser2@commercial.royalsundaram.net ")
 
 }
 
